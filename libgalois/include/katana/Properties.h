@@ -552,6 +552,7 @@ class VectorPropertyView {
     
   private:
     VectorPropertyView(arrow::LargeListArray& array, T* ptr) : array_(array), ptr_(ptr) {
+      // TODO(nojanp): check if this memory allocation could be eliminated
       list_of_double_pointers_ = new VectorRef<T>[array.length()];
       for(auto i = 0; i< array.length(); i++){
         // list_of_double_pointers_[i] = VectorRef(ptr + array.value_offset(i), N);
